@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StatusCommande {
+  EnAttente
+  Validee
+  Annulee
+}
+
+enum StatusFacture {
+  EnAttente
+  Validee
+  Rejetee
+}
+
+enum TypeFacture {
+  Manuelle
+  Lot
+}
+
+enum RoleUtilisateur {
+  ADMIN
+  AGENT
+  COMPTABLE
+}
+
+model CommandeAchat {
+  id              Int       @id @default(autoincrement())
+  numeroCommande  String    @unique
+  dateCommande    DateTime
+  montantTotal    Decimal
+  status          StatusCommande
+  fournisseur     Fournisseur @relation(fields: [idFournisseur], references: [id])
+  idFournisseur   Int
+
+  Facture Facture[]
+}
+
+model Fournisseur {
+  id              Int             @id @default(autoincrement())
+  nom             String
+  contact         String
+  email           String          @unique
+  adresse         String
+  commandes       CommandeAchat[]
+  factures        Facture[]
+}
+
+model Facture {
+  id              Int       @id @default(autoincrement())
+  numeroFacture   String    @unique
+  dateFacture     DateTime
+  dateGL          DateTime?
+  montant         Decimal
+  status          StatusFacture
+  typeFacture     TypeFacture
+  messageErreur   String?
+  fournisseur     Fournisseur @relation(fields: [idFournisseur], references: [id])
+  commande        CommandeAchat? @relation(fields: [idCommande], references: [id])
+  idFournisseur   Int
+  idCommande      Int?
+}
+
+model Utilisateur {
+  id                Int              @id @default(autoincrement())
+  nomUtilisateur    String           @unique
+  motDePasseHash    String
+  role              RoleUtilisateur
+}

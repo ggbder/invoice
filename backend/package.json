@@ -1,0 +1,51 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for Clearflow Invoice Manager",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": " react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "invoice-manager",
+    "backend",
+    "mongodb",
+    "express"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "pg": "^8.14.1",
+    "pg-hstore": "^2.3.4",
+    "react-scripts": "^5.0.1",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "dotenv": "^16.0.3",
+    "nodemon": "^3.1.0",
+    "prisma": "^6.5.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
